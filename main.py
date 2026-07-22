@@ -154,6 +154,11 @@ def procesamiento_de_imagenes(
 
             imagen_limpia = leer_imagen_ppm_rgb(ruta_imagen)
 
+            # Todo el proceso intersousa solo el canal verda (Índice 1 en RGB)
+            # Se conserva el eje del canal como (alto, ancho, 1) para reutilizar sin
+            # mayores cambios el resto del código
+            imagen_limpia = imagen_limpia[:, :, 1:2]
+
             # G de la limpia: solo como dato de referencia en el CSV.
             gradiente_medio_limpia = calcular_gradiente_medio(imagen_limpia)
 
@@ -250,6 +255,7 @@ def procesamiento_de_imagenes(
     print(f"Procesamiento completo. Resultados en: {ruta_csv}")
 
 if __name__ == '__main__':
+    print('Procesando solo canal verde')
     # Seteo de variables
 
     # Carpeta que contiene las imágenes en formato .ppm

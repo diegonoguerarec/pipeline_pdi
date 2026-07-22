@@ -20,8 +20,8 @@ def calcular_matrices_s_direccionales_rgb(imagen_rgb):
     """
     imagen_rgb = np.clip(imagen_rgb.astype(np.float32), 0.0, 1.0)
 
-    if imagen_rgb.ndim != 3 or imagen_rgb.shape[2] != 3:
-        raise ValueError("La imagen debe ser RGB con forma (alto, ancho, 3).")
+    if imagen_rgb.ndim != 3 or imagen_rgb.shape[2] not in (1, 3):
+        raise ValueError("La imagen debe tener forma (alto, ancho, 1) o (alto, ancho, 3).")
 
     alto, ancho, _ = imagen_rgb.shape
     if alto < 3 or ancho < 3:

@@ -161,7 +161,7 @@ def calcular_ssim_rgb(imagen_original, imagen_procesada, data_range=1.0):
 
     valores_ssim = []
 
-    for canal in range(3):
+    for canal in range(imagen_original.shape[2]):
         x = imagen_original[:, :, canal]
         y = imagen_procesada[:, :, canal]
 
@@ -321,7 +321,11 @@ def calcular_caracteristicas_fsim(imagen_rgb):
     o para el canal de luminancia de imágenes a color. Por eso aquí primero
     convertimos la imagen RGB a gris/luminancia.
     """
-    gris = convertir_a_gris(imagen_rgb)
+    #gris = convertir_a_gris(imagen_rgb)
+
+    # Pipeline en canal verde: la "imagen" ya es un solo canal, se usa
+    # directamente como entrada a PC y GM (sin conversión a gris ponderado).
+    gris = imagen_rgb[:, :, 0]
 
     pc = calcular_phase_congruency_aproximada(gris)
     gm = _calcular_magnitud_gradiente_gris(gris)
