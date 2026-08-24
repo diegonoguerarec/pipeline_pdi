@@ -37,7 +37,7 @@ def difusion_anisotropica_rgb(imagen, lambda_=0.1, delta_t=0.15, iteraciones=35)
         u_anterior = u.copy()
 
         centro = u_anterior[1:-1, 1:-1, :]
-
+ 
         # Diferencias con vecinos cardinales
         norte = u_anterior[0:-2, 1:-1, :] - centro
         sur = u_anterior[2:, 1:-1, :] - centro
